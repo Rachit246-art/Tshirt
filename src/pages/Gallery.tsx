@@ -644,7 +644,6 @@ export const Gallery: React.FC = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
               className="gallery-clean-grid"
-              style={{ display: 'grid', gap: '3rem' }}
             >
               <AnimatePresence>
                 {filteredPieces.map((piece, idx) => (

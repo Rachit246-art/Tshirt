@@ -27,11 +27,40 @@ export const Home: React.FC = () => {
   const stageTrackRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const quoteVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (heroVideoRef.current) {
-      heroVideoRef.current.play().catch(() => {});
-    }
+    const initVideo = (video: HTMLVideoElement | null) => {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', 'true');
+      video.play().catch(() => {});
+    };
+
+    initVideo(heroVideoRef.current);
+    initVideo(quoteVideoRef.current);
+
+    const handleFirstTouch = () => {
+      if (heroVideoRef.current && heroVideoRef.current.paused) {
+        heroVideoRef.current.play().catch(() => {});
+      }
+      if (quoteVideoRef.current && quoteVideoRef.current.paused) {
+        quoteVideoRef.current.play().catch(() => {});
+      }
+      window.removeEventListener('touchstart', handleFirstTouch);
+      window.removeEventListener('scroll', handleFirstTouch);
+    };
+
+    window.addEventListener('touchstart', handleFirstTouch, { passive: true });
+    window.addEventListener('scroll', handleFirstTouch, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleFirstTouch);
+      window.removeEventListener('scroll', handleFirstTouch);
+    };
   }, []);
   
   // Parallax logic for Hero Image
@@ -51,17 +80,7 @@ export const Home: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Custom JS-driven pinning for Gallery -> Video overlap
-  const galleryAnchorRef = useRef<HTMLDivElement>(null);
-  const [galleryTranslateY, setGalleryTranslateY] = useState(0);
 
-  // Custom JS-driven pinning for FAQ -> Blog overlap
-  const faqAnchorRef = useRef<HTMLDivElement>(null);
-  const [faqTranslateY, setFaqTranslateY] = useState(0);
-
-  // Custom JS-driven pinning for Blog -> Reviews overlap
-  const blogAnchorRef = useRef<HTMLDivElement>(null);
-  const [blogTranslateY, setBlogTranslateY] = useState(0);
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -129,46 +148,6 @@ export const Home: React.FC = () => {
               } else if (p <= 0.01) {
                 setCardsRevealed(false);
               }
-            }
-          }
-
-          // 2. JS-Driven Pinning for Gallery -> Video Overlap
-          if (galleryAnchorRef.current) {
-            const rect = galleryAnchorRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            // When the NATURAL bottom of the gallery scrolls above the bottom of the screen,
-            // we calculate the overlap to translate the inner gallery down, pinning it visually.
-            const overlap = windowHeight - rect.bottom;
-            // Cap the overlap at windowHeight (the exact height of the PremiumVideo)
-            // so it stops pinning and scrolls away naturally once the video covers it.
-            if (overlap > 0) {
-              setGalleryTranslateY(Math.min(overlap, windowHeight));
-            } else {
-              setGalleryTranslateY(0);
-            }
-          }
-
-          // 2.5. JS-Driven Pinning for FAQ -> Blog Overlap
-          if (faqAnchorRef.current) {
-            const rect = faqAnchorRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const overlap = windowHeight - rect.bottom;
-            if (overlap > 0) {
-              setFaqTranslateY(Math.min(overlap, windowHeight));
-            } else {
-              setFaqTranslateY(0);
-            }
-          }
-
-          // 3. JS-Driven Pinning for Blog -> Reviews Overlap
-          if (blogAnchorRef.current) {
-            const rect = blogAnchorRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const overlap = windowHeight - rect.bottom;
-            if (overlap > 0) {
-              setBlogTranslateY(Math.min(overlap, windowHeight));
-            } else {
-              setBlogTranslateY(0);
             }
           }
 
@@ -333,7 +312,10 @@ export const Home: React.FC = () => {
                 loop
                 playsInline
                 preload="auto"
-                className="w-full h-full object-cover"
+                controls={false}
+                disablePictureInPicture
+                disableRemotePlayback
+                className="w-full h-full object-cover pointer-events-none"
                 style={{ opacity: 0.2 }}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80" />
@@ -640,11 +622,16 @@ export const Home: React.FC = () => {
             {/* Background Video */}
             <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30 mix-blend-screen">
               <video
+                ref={quoteVideoRef}
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover"
+                preload="auto"
+                controls={false}
+                disablePictureInPicture
+                disableRemotePlayback
+                className="w-full h-full object-cover pointer-events-none"
               >
                 <source src="/vecteezy_old-film-heavy-grain-overlays-film-dust-and-scratches_56778674.mp4" type="video/mp4" />
               </video>
@@ -769,48 +756,27 @@ export const Home: React.FC = () => {
         </div>
       </div>
       
-      {/* 4 & 4.5. JS-DRIVEN OVERLAPPING GALLERY & VIDEO SECTION */}
+      {/* 4 & 4.5. GALLERY & VIDEO SECTIONS */}
       <div className="relative w-full bg-[#000000]">
-        
-        {/* ANCHOR: Tracks natural scroll position of the gallery independently of the video */}
-        <div ref={galleryAnchorRef} className="w-full z-10">
-          {/* CONTENT: Translates down to stay pinned */}
-          <div style={{ transform: `translateY(${galleryTranslateY}px)`, willChange: 'transform' }}>
-            <GalleryView />
-          </div>
+        <div className="relative z-10 w-full">
+          <GalleryView />
         </div>
-
-        {/* Video glides up naturally over the pinned gallery */}
         <div className="relative z-20 shadow-[0_-40px_100px_rgba(0,0,0,1)] bg-black">
           <PremiumVideo />
         </div>
-        
       </div>
 
-      {/* 5, 6 & 7. JS-DRIVEN OVERLAPPING FAQ, BLOG & TESTIMONIALS SECTION */}
+      {/* 5, 6 & 7. FAQ, BLOG & TESTIMONIALS SECTION */}
       <div className="relative w-full bg-[#000000]">
-        
-        {/* ANCHOR 1: Tracks natural scroll position of FAQ */}
-        <div ref={faqAnchorRef} className="w-full z-10 bg-black">
-          <div style={{ transform: `translateY(${faqTranslateY}px)`, willChange: 'transform' }}>
-            <FaqSection />
-          </div>
+        <div className="relative z-10 w-full bg-black">
+          <FaqSection />
         </div>
-
-        {/* Blog glides up naturally over FAQ, and acts as ANCHOR 2 for Testimonials */}
-        <div className="relative z-20 shadow-[0_-40px_100px_rgba(0,0,0,1)] bg-[#000000]">
-          <div ref={blogAnchorRef} className="w-full bg-black">
-            <div style={{ transform: `translateY(${blogTranslateY}px)`, willChange: 'transform' }}>
-              <BlogSection />
-            </div>
-          </div>
+        <div className="relative z-20 shadow-[0_-40px_100px_rgba(0,0,0,1)] bg-black">
+          <BlogSection />
         </div>
-
-        {/* Testimonials glide up naturally over the pinned blog */}
-        <div className="relative z-30 shadow-[0_-40px_100px_rgba(0,0,0,1)] bg-[#000000]">
+        <div className="relative z-30 shadow-[0_-40px_100px_rgba(0,0,0,1)] bg-black">
           <TestimonialSection />
         </div>
-        
       </div>
 
       {/* 8. PREMIUM CONTACT US */}

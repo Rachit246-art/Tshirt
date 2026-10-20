@@ -64,10 +64,10 @@ export const GalleryView = () => {
   const activePiece = lightboxIndex !== null ? galleryImages[lightboxIndex] : null;
 
   return (
-    <section className="relative w-full bg-[#000000] pt-20 pb-16 px-4 sm:px-6 md:px-10 z-40">
+    <section className="relative w-full bg-[#000000] pt-12 pb-10 px-4 sm:px-6 md:px-10 z-40">
       <div className="max-w-[1400px] mx-auto">
         {/* Section Heading */}
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-center">
           <h2 style={{ fontFamily: 'sans-serif', fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em', color: '#fff', lineHeight: 1 }}>Gallery</h2>
           <p style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.25em', color: 'rgba(255,255,255,0.4)', marginTop: '12px' }}>
             420 GSM Heavyweight · Limited Edition Drops · Crafted in Portugal

@@ -77,14 +77,14 @@ const FaqItem = ({ faq, index, isOpen, onToggle }: { faq: typeof faqs[0]; index:
 };
 
 export const FaqSection: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
     <section
       ref={sectionRef}
       className="relative w-full bg-[#000000] overflow-hidden"
-      style={{ padding: 'clamp(80px, 10vw, 140px) clamp(20px, 6vw, 80px)' }}
+      style={{ padding: 'clamp(48px, 6vw, 80px) clamp(20px, 6vw, 80px)' }}
     >
       {/* Ambient glow */}
       <div
@@ -94,21 +94,21 @@ export const FaqSection: React.FC = () => {
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Heading */}
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center">
           <motion.p
-            initial={{ opacity: 0, letterSpacing: '0.6em' }}
-            whileInView={{ opacity: 1, letterSpacing: '0.35em' }}
-            viewport={{ once: false, margin: '-80px' }}
-            transition={{ duration: 0.8 }}
-            style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '14px' }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.35em', color: 'rgba(255,255,255,0.35)', marginBottom: '14px' }}
           >
             — ANSWERS —
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: 'sans-serif', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', color: '#fff', lineHeight: 1, letterSpacing: '-0.03em' }}
           >
             Frequently Asked
@@ -116,8 +116,8 @@ export const FaqSection: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.35)', marginTop: '12px' }}
           >
             Everything you need to know about our pieces

@@ -186,7 +186,7 @@ export const TestimonialSection: React.FC = () => {
   return (
     <section
       className="relative w-full bg-[#000000] overflow-hidden"
-      style={{ padding: 'clamp(80px, 10vw, 130px) clamp(20px, 6vw, 80px)' }}
+      style={{ padding: 'clamp(48px, 6vw, 80px) clamp(20px, 6vw, 80px)' }}
     >
       <style>{`
         .testimonial-desktop-grid {
@@ -205,38 +205,26 @@ export const TestimonialSection: React.FC = () => {
         }
       `}</style>
 
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-50"
-        >
-          <source src="/12762291_3840_2160_24fps (1).mp4" type="video/mp4" />
-        </video>
-        {/* Subtle gradient overlay to ensure text legibility but not block the video completely */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/70" />
-      </div>
+      {/* Ambient Deep Dark Backdrop */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none bg-[#000000]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <motion.p
-            initial={{ opacity: 0, letterSpacing: '0.6em' }}
-            whileInView={{ opacity: 1, letterSpacing: '0.35em' }}
-            viewport={{ once: false, margin: '-80px' }}
-            transition={{ duration: 0.8 }}
-            style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '14px' }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.35em', color: 'rgba(255,255,255,0.3)', marginBottom: '14px' }}
           >
             &mdash; VOICES &mdash;
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: 'sans-serif', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', color: '#fff', lineHeight: 1, letterSpacing: '-0.03em' }}
           >
             What They Say

@@ -44,7 +44,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme = 'home' }) => {
     <>
       {/* Top Header Bar */}
       <header
-        className="pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between px-6 py-5 md:px-12 md:py-7"
+        className="pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between px-4 py-4 sm:px-6 sm:py-5 md:px-12 md:py-7"
         data-nav="true"
         style={{ zIndex: 99999 }}
       >
@@ -61,7 +61,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme = 'home' }) => {
               xmlns="http://www.w3.org/2000/svg"
               role="img"
               aria-label="Justin Jefferson"
-              className="h-10 w-auto md:h-12"
+              className="h-8 w-auto sm:h-10 md:h-12"
               style={{ fill: '#ffffff' }}
             >
               <path d="M27.9271 35.2244L28.9161 42.818L18.486 35.4071L7.90283 42.9264L8.88835 35.3355L18.4858 28.5164L27.9271 35.2244Z" />
@@ -72,7 +72,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme = 'home' }) => {
         </Link>
 
         {/* Right side controls */}
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-6 pointer-events-auto shrink-0">
           <VisitStudioButton />
           
           {/* Custom Angled Hamburger */}
@@ -84,7 +84,7 @@ export const Navigation: React.FC<NavigationProps> = ({ theme = 'home' }) => {
             data-hamburger="true"
             data-state={isOpen ? "open" : "closed"}
             onClick={() => setIsOpen(!isOpen)}
-            className="-m-4 inline-flex items-center justify-center bg-transparent p-4"
+            className="inline-flex items-center justify-center bg-transparent p-1.5 cursor-pointer shrink-0"
             style={{ color: logoColor }}
           >
             <svg

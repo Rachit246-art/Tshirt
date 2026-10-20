@@ -40,8 +40,8 @@ export const PremiumContact: React.FC = () => {
 
   return (
     <section 
-      className="relative w-full min-h-screen py-32 z-30 overflow-hidden"
-      style={{ backgroundColor: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding: '100px 20px' }}
+      className="relative w-full py-16 z-30 overflow-hidden"
+      style={{ backgroundColor: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding: '48px 20px' }}
     >
       {/* Background ambient light */}
       <div className="absolute inset-0 pointer-events-none opacity-20 flex items-center justify-center">
@@ -51,7 +51,7 @@ export const PremiumContact: React.FC = () => {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         className="relative z-10 w-full"
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '800px', margin: '0 auto' }}
       >

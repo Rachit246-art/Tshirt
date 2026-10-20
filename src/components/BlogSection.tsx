@@ -133,30 +133,18 @@ export const BlogSection: React.FC = () => {
   return (
     <section
       className="relative w-full bg-[#000000] overflow-hidden"
-      style={{ padding: 'clamp(80px, 10vw, 130px) clamp(20px, 6vw, 80px)' }}
+      style={{ padding: 'clamp(48px, 6vw, 80px) clamp(20px, 6vw, 80px)' }}
     >
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-        >
-          <source src="/2dca3bcd72.mp4" type="video/mp4" />
-        </video>
-        {/* Subtle gradient overlay to ensure text legibility but not block the video completely */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/80" />
-      </div>
+      {/* Ambient Deep Dark Backdrop */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none bg-[#000000]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
-        <div className="flex flex-col items-center text-center gap-4 mb-16">
+        <div className="flex flex-col items-center text-center gap-4 mb-10">
           <motion.p
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             style={{ fontFamily: 'monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.35em', color: 'rgba(255,255,255,0.3)' }}
           >
@@ -165,8 +153,8 @@ export const BlogSection: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: 'sans-serif', fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, textTransform: 'uppercase', color: '#fff', lineHeight: 1, letterSpacing: '-0.02em' }}
           >
             From The Studio
@@ -174,8 +162,8 @@ export const BlogSection: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             style={{ fontFamily: 'monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)', marginTop: '8px' }}
           >
             Craft stories, design process and culture

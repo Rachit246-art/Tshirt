@@ -741,7 +741,6 @@ export const Studio: React.FC = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
               className="gallery-clean-grid"
-              style={{ display: 'grid', gap: '3rem' }}
             >
               <AnimatePresence>
                 {filteredPieces.map((piece, idx) => (
@@ -766,26 +765,9 @@ export const Studio: React.FC = () => {
                       loading="lazy"
                     />
 
-                    {/* Top Floating Badges */}
-                    <div className="gallery-card-badge-top">
-                      <span className="gallery-tag-pill">{piece.lot}</span>
-                      <span className="gallery-tag-pill opacity-90">{piece.badge}</span>
-                    </div>
 
-                    {/* Clean Sliding Bottom Drawer */}
-                    <div className="gallery-card-bottom-drawer">
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 block mb-1">
-                        {piece.weight} · {piece.wash}
-                      </span>
-                      <div className="flex items-start justify-between gap-3 mt-1">
-                        <h3 className="font-display text-base sm:text-lg font-medium uppercase tracking-wide leading-tight text-white group-hover:text-neutral-200 transition-colors pr-2">
-                          {piece.title}
-                        </h3>
-                        <span className="font-mono text-[10px] text-white/90 bg-white/10 px-2.5 py-1 rounded shrink-0 border border-white/20">
-                          INSPECT ↗
-                        </span>
-                      </div>
-                    </div>
+
+
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -842,10 +824,7 @@ export const Studio: React.FC = () => {
                         loading="lazy"
                       />
 
-                      <div className="gallery-card-badge-top">
-                        <span className="gallery-tag-pill">{piece.lot}</span>
-                        <span className="gallery-tag-pill">{piece.badge}</span>
-                      </div>
+
 
                       <div className="gallery-card-bottom-drawer">
                         <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 block mb-0.5">

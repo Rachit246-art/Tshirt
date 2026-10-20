@@ -38,8 +38,8 @@
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: clamp(0.75rem, 2.2vh, 1.85rem) !important;
-  padding: 6rem 1.5rem 2rem 1.5rem !important;
+  gap: clamp(0.5rem, 2vh, 1.85rem) !important;
+  padding: 5rem 1rem 2rem 1rem !important;
   margin: auto !important;
   width: 100% !important;
   max-width: 1100px !important;
@@ -55,30 +55,32 @@
   cursor: pointer !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   user-select: none !important;
+  max-width: 100% !important;
 }
 
 .jj-menu-link-num {
   font-family: var(--font-mono, monospace) !important;
-  font-size: clamp(10px, 1.1vw, 13px) !important;
+  font-size: clamp(9px, 1.1vw, 13px) !important;
   font-weight: 600 !important;
   letter-spacing: 0.22em !important;
   color: rgba(255, 255, 255, 0.35) !important;
-  margin-right: clamp(0.75rem, 1.8vw, 2rem) !important;
+  margin-right: clamp(0.5rem, 1.8vw, 2rem) !important;
   transition: all 0.35s ease !important;
   transform: translateY(-0.35em) !important;
 }
 
 .jj-menu-link-text {
   font-family: var(--font-display, "beachwood-variable", "Inter", sans-serif) !important;
-  font-size: clamp(2.35rem, 5.2vw, 4.8rem) !important;
+  font-size: clamp(1.75rem, 7vw, 4.8rem) !important;
   font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.03em !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
   text-transform: uppercase !important;
   color: rgba(255, 255, 255, 0.35) !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   display: inline-flex !important;
   align-items: center !important;
+  text-align: center !important;
 }
 
 /* Hover State */
@@ -146,3 +148,30 @@
     justify-content: space-between !important;
   }
 }
+
+/* =========================================================================
+   VISIT STUDIO HEADER BUTTON (CLEAN, PROPORTIONAL RED BUTTON)
+   ========================================================================= */
+.visit-studio-btn {
+  height: 28px !important;
+  padding: 0 0.85rem !important;
+  background-color: #e50000 !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+  clip-path: none !important;
+}
+
+@media (min-width: 640px) {
+  .visit-studio-btn {
+    height: 32px !important;
+    padding: 0 1.15rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visit-studio-btn {
+    height: 34px !important;
+    padding: 0 1.25rem !important;
+  }
+}
+

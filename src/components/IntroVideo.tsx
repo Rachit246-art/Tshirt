@@ -112,6 +112,9 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({ onComplete }) => {
         autoPlay
         muted
         preload="auto"
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
         onEnded={handleFinish}
         className="w-full h-full object-cover select-none cursor-pointer"
       >
