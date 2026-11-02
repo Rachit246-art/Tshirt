@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 export const FinalFooter: React.FC = () => {
@@ -240,6 +240,12 @@ export const FinalFooter: React.FC = () => {
         <span style={{ fontFamily: 'monospace', fontSize: '11px', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
           © {currentYear} PREMIUM STUDIOS. ALL RIGHTS RESERVED.
         </span>
+        <div className="footer-credit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '12px', color: '#94a3b8' }}>
+          <span className="credit-brand" style={{ fontWeight: 700, letterSpacing: '0.08em', color: '#ffffff', textTransform: 'uppercase' }}>PREMIUM STUDIOS</span>
+          <span className="credit-divider" style={{ color: 'rgba(255, 255, 255, 0.28)', margin: '0 4px' }}>|</span>
+          <span className="credit-text" style={{ color: '#94a3b8' }}>Made with <span className="credit-heart" aria-hidden="true" style={{ color: '#ff385c', display: 'inline-block', margin: '0 3px' }}>❤️</span> by <span className="credit-author" style={{ color: '#ffffff', fontWeight: 600 }}>Regortz</span></span>
+        </div>
+
         <span style={{ fontFamily: 'monospace', fontSize: '11px', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
           DESIGNED IN THE VOID
         </span>
